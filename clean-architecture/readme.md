@@ -7,3 +7,5 @@
 * [Dive into Clear-Architecture by golang in Japanese](https://bmf-tech.com/posts/Golang%E3%81%A7%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%81%AB%E5%85%A5%E9%96%80%E3%81%99%E3%82%8B)
     - [GitHub repository](https://github.com/bmf-san/go-clean-architecture-web-application-boilerplate)
 * [API server by Clean-architecture](https://qiita.com/hirotakan/items/698c1f5773a3cca6193e)
+
+* [クリーンアーキテクチャ完全に理解した](https://gist.github.com/mpppk/609d592f25cab9312654b39f1b357c60)
