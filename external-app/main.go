@@ -1,8 +1,9 @@
 package main
 
 import (
-	hexarchsample1project "architecture/hexagonal-architecture/hex-arch-sample1-project"
 	"context"
+
+	hexarchsample1project "architecture/hexagonal-architecture/hex-arch-sample1-project"
 )
 
 func main() {

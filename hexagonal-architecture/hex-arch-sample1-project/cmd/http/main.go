@@ -2,6 +2,7 @@ package main
 
 import (
 	"architecture/hexagonal-architecture/hex-arch-sample1-project/cmd/http/controller"
+	"architecture/hexagonal-architecture/hex-arch-sample1-project/internal/service2"
 	"fmt"
 	"log"
 	"net/http"
@@ -29,7 +30,13 @@ func main() {
 func init() {
 	ctrl := &controller.Controller{}
 
+	mockGateway2 := service2.NewMockGateway(service2.NewMockDB())
+	provider2 := service2.NewProvider(mockGateway2)
+	ctrl2 := controller.NewController2(provider2)
+
 	e.GET("/:message", ctrl.HandleMessage)
+	e.GET("/people/:personID", ctrl2.HandlePersonGet)
+	e.POST("/people", ctrl2.HandlePersonRegister)
 }
 
 func createMux() *echo.Echo {

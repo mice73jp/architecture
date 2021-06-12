@@ -4,7 +4,7 @@ import (
 	"architecture/hexagonal-architecture/hex-arch-sample1-project/internal/service1"
 	"context"
 
-	"github.com/labstack/echo/v4"
+	echo "github.com/labstack/echo/v4"
 )
 
 // Controller .
