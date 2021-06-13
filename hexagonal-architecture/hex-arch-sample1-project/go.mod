@@ -3,6 +3,8 @@ module architecture/hexagonal-architecture/hex-arch-sample1-project
 go 1.16
 
 require (
+	github.com/go-sql-driver/mysql v1.6.0
+	github.com/jmoiron/sqlx v1.3.4
 	github.com/labstack/echo/v4 v4.3.0
 	github.com/mattn/go-isatty v0.0.13 // indirect
 	github.com/spf13/cobra v1.1.3
