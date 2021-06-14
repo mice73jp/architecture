@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strconv"
 
-	echo "github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4"
 )
 
 // Controller2 ...

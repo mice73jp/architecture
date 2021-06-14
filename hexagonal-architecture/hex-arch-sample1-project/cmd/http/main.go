@@ -3,7 +3,7 @@ package main
 import (
 	"architecture/hexagonal-architecture/hex-arch-sample1-project/cmd/http/controller"
 	"architecture/hexagonal-architecture/hex-arch-sample1-project/internal/service2"
-	"architecture/hexagonal-architecture/hex-arch-sample1-project/pkg/mysql"
+	"architecture/hexagonal-architecture/hex-arch-sample1-project/internal/service3"
 	"fmt"
 	"log"
 	"net/http"
@@ -29,34 +29,42 @@ func main() {
 }
 
 func init() {
-	// MySql
-	c := mysql.Config{
-		Host:                 os.Getenv("DB_HSOT"),
-		Port:                 os.Getenv("DB_PORT"),
-		User:                 os.Getenv("DB_USER"),
-		DBName:               os.Getenv("DB_NAME"),
-		Passwd:               os.Getenv("DB_PASSWORD"),
-		AllowNativePasswords: true,
-	}
+	// // MySql
+	// c := mysql.Config{
+	// 	Host:                 os.Getenv("DB_HSOT"),
+	// 	Port:                 os.Getenv("DB_PORT"),
+	// 	User:                 os.Getenv("DB_USER"),
+	// 	DBName:               os.Getenv("DB_NAME"),
+	// 	Passwd:               os.Getenv("DB_PASSWORD"),
+	// 	AllowNativePasswords: true,
+	// }
 
-	db, err := mysql.Connect(c)
-	if err != nil {
-		log.Fatalln(err)
-	}
+	// db, err := mysql.Connect(c)
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
+
+	// Service2
+	// gateway2 := service2.NewGateway(db)
+	// provider2 := service2.NewProvider(gateway2)
+	mockGateway2 := service2.NewMockGateway(service2.NewMockDB())
+	provider2 := service2.NewProvider(mockGateway2)
+
+	// Service3
+	// gateway3 := service3.NewGateway(db)
+	// provider3 := service3.NewProvider(gateway3)
+	mockGateway3 := service3.NewMockGateway(service3.NewMockDB())
+	provider3 := service3.NewProvider(mockGateway3)
 
 	ctrl := &controller.Controller{}
-
-	gateway2 := service2.NewGateway(db)
-	provider2 := service2.NewProvider(gateway2)
-
-	// For Mock
-	// mockGateway2 := service2.NewMockGateway(service2.NewMockDB())
-	// provider2 := service2.NewProvider(mockGateway2)
 	ctrl2 := controller.NewController2(provider2)
+	ctrl3 := controller.NewController3(provider3)
 
 	e.GET("/:message", ctrl.HandleMessage)
 	e.GET("/people/:personID", ctrl2.HandlePersonGet)
 	e.POST("/people", ctrl2.HandlePersonRegister)
+	e.POST("/accounts", ctrl3.HandleAccountOpen)
+	e.POST("/accounts/transfer", ctrl3.HandleMoneyTransfer)
 }
 
 func createMux() *echo.Echo {
